@@ -1,4 +1,4 @@
--- SetupConfig: { "AddRequires": [ "CK.sAuthUserOnLogin" ] }
+-- SetupConfig: { "Requires": [ "CK.sAuthUserOnLogin" ] }
 --
 -- @Token can not be null. This is the key that identifies a guest user.
 --

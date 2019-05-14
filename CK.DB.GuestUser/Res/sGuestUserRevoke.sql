@@ -1,4 +1,4 @@
---SetupConfig: { "AddRequires": [ "CK.sTokenDestroy" ] }
+--SetupConfig: { "Requires": [ "CK.sTokenDestroy" ] }
 
 create procedure CK.sGuestUserRevoke
 (

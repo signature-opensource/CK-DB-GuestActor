@@ -1,0 +1,35 @@
+-- SetupConfig: {}
+
+create transformer on CK.sAuthUserOnLogin
+as
+begin
+    inject "
+		  if @Scheme = 'GuestUser'
+      begin
+			  declare @Now datetime2(2) = sysutcdatetime();
+        declare @Active bit;
+			  declare @ExpirationDateUtc datetime2(2);
+
+			  select @ExpirationDateUtc = t.ExpirationDateUtc, @Active = t.Active
+			  from CK.tGuestUser g
+			  inner join CK.tTokenStore t on t.TokenId = g.TokenId
+			  where g.GuestUserId = @UserId;
+
+        if @Active <> 1 set @FailureReason = N'Auth.GuestUser.Token.Inactive';
+			  if @ExpirationDateUtc < @Now set @FailureReason = N'Auth.GuestUser.Token.Expired';
+      end
+      "
+      into "CheckLoginFailure"
+
+    inject "
+    		if @Scheme = 'GuestUser'
+		    begin
+
+          update CK.tUser set
+             LastLoginTime = sysutcdatetime()
+            ,SuccessfullLoginCount = SuccessfullLoginCount + 1
+          where GuestUserId = @UserId
+
+		    end
+    " into "LoginSucceed"
+end

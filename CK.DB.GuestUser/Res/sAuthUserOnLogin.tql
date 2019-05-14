@@ -4,7 +4,7 @@ create transformer on CK.sAuthUserOnLogin
 as
 begin
     inject "
-		  if @Scheme = 'GuestUser'
+		  if @Scheme = 'Guest'
       begin
 			  declare @Now datetime2(2) = sysutcdatetime();
         declare @Active bit;
@@ -22,7 +22,7 @@ begin
       into "CheckLoginFailure"
 
     inject "
-    		if @Scheme = 'GuestUser'
+    		if @Scheme = 'Guest'
 		    begin
 
           update CK.tUser set

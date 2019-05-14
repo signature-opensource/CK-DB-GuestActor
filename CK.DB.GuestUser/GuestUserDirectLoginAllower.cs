@@ -21,7 +21,7 @@ namespace CK.DB.GuestUser
         {
             using( monitor.OpenInfo($"{GetType()}.AllowAsync challenge") )
             {
-                if( scheme != "GuestUser" )
+                if( scheme != "Guest" )
                 {
                     monitor.Trace( "Invalid scheme" );
                     return Task.FromResult( false );

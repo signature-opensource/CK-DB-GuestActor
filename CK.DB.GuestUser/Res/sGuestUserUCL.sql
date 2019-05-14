@@ -168,7 +168,7 @@ begin
             else
             begin
 
-                exec CK.sAuthUserOnLogin 'GuestUser', @LastLoginTime, @UserId, @ActualLogin, @Now, @LoginFailureCode output, @LoginFailureReason output;  
+                exec CK.sAuthUserOnLogin 'Guest', @LastLoginTime, @UserId, @ActualLogin, @Now, @LoginFailureCode output, @LoginFailureReason output;  
                 if @ActualLogin = 1 and @LoginFailureCode is null
                 begin
 

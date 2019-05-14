@@ -19,16 +19,19 @@ begin
 
     --<PreCreate revert />
 
+    set @GuestUserIdResult = 0;
+
     exec CK.sGuestUserUCL
          @ActorId
-        ,@GuestUserIdResult
-        ,@TokenResult
+        ,@GuestUserIdResult output
+        ,@TokenResult output
         ,1
         ,null/*UCResult should be 1*/
         ,null/*No login*/
         ,null/*No login*/
         ,@ExpirationDateUtc
-        ,@Active;
+        ,@Active
+        ,@TokenIdResult output;
 
     --<PostCreate />
 

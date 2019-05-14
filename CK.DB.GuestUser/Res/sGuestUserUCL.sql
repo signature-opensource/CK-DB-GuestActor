@@ -24,13 +24,14 @@ create procedure CK.sGuestUserUCL
 (
      @ActorId int
     ,@UserId int /*input*/ output
-    ,@Token varchar(71)
+    ,@Token varchar(71) output
     ,@Mode int -- not null enum { "CreateOnly" = 1, "UpdateOnly" = 2, "CreateOrUpdate" = 3, "WithCheckLogin" = 4, "WithActualLogin" = 8, "IgnoreOptimisticKey" = 16 }
     ,@UCResult int output -- not null enum { None = 0, Created = 1, Updated = 2 }
     ,@LoginFailureCode int output -- Optional
     ,@LoginFailureReason nvarchar(255) output -- Optional
-    ,@ExpirationDateUtc datetime(2) = null
+    ,@ExpirationDateUtc datetime2(2) = null
     ,@Active bit = null
+    ,@TokenIdResult int = null output
 )
 as
 begin
@@ -82,7 +83,7 @@ begin
         begin
 
             -- Retrieve the bound guest user id
-            select @ActualUserId = GuestUserId, @LastLoginTime = LastLoginTime
+            select @ActualUserId = GuestUserId, @LastLoginTime = LastLoginTime, @TokenIdResult = @TokenId
 	        from CK.tGuestUser
 	        where TokenId = @TokenId;
 
@@ -110,7 +111,6 @@ begin
                 exec CK.sActorCreate @ActorId, @UserId output;
                 declare @TokenKey varchar(30) = cast(@UserId as varchar(30)); 
 
-                declare @TokenIdResult int;
                 exec CK.sTokenCreate @ActorId, @TokenKey, 'CK.DB.GuestUser', @ExpirationDateUtc, @Active, @TokenIdResult output, @Token output;
 
                 insert into CK.tGuestUser( GuestUserId, TokenId, LastLoginTime )

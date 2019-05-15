@@ -12,9 +12,21 @@ begin
 
     --[beginsp]
 
+    declare @TokenId int;
+
+    select @TokenId = s.TokenId
+        from CK.tTokenStore s
+        inner join CK.tGuestUser g on g.TokenId = s.TokenId
+        where g.GuestUserId = @GuestUserId;
+
     --<PreDestroy revert />
 
     delete CK.tGuestUser where GuestUserId = @GuestUserId;
+
+    if @TokenId <> 0
+    begin
+        exec CK.sTokenDestroy 1, @TokenId;
+    end
 
     --<PostDestroy />
 

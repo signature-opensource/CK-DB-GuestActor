@@ -111,7 +111,22 @@ begin
                 exec CK.sActorCreate @ActorId, @UserId output;
                 declare @TokenKey varchar(30) = cast(@UserId as varchar(30)); 
 
-                exec CK.sTokenCreate @ActorId, @TokenKey, 'CK.DB.GuestUser', @ExpirationDateUtc, @Active, @TokenIdResult output, @Token output;
+                declare @ActualExpirationDateUtc datetime2(2) = case
+                    when @ExpirationDateUtc is not null then @ExpirationDateUtc
+                    else dateadd( hour, 1, sysutcdatetime() ) end
+
+                declare @ActualActive bit = case
+                    when @Active is not null then @Active
+                    else 0 end;
+
+                exec CK.sTokenCreate
+                     @ActorId
+                    ,@TokenKey
+                    ,'CK.DB.GuestUser'
+                    ,@ActualExpirationDateUtc
+                    ,@ActualActive
+                    ,@TokenId output
+                    ,@Token output;
 
                 insert into CK.tGuestUser( GuestUserId, TokenId, LastLoginTime )
                     values( @UserId, @TokenIdResult, @LastLoginTime );
@@ -137,8 +152,15 @@ begin
         	    if @UserId = 0 set @UserId = @ActualUserId;
 			    else if @UserId <> @ActualUserId throw 50000, 'Argument.UserIdAndTokenMismatch', 1;
 
-                exec CK.sTokenRefresh @ActorId, @TokenId, @ExpirationDateUtc;
-                exec CK.sTokenActivate @ActorId, @TokenId, @Active;
+                if @ExpirationDateUtc <> null
+                begin
+                    exec CK.sTokenRefresh @ActorId, @TokenId, @ExpirationDateUtc;
+                end
+
+                if @Active <> null
+                begin
+                    exec CK.sTokenActivate @ActorId, @TokenId, @Active;
+                end
 
 		        set @UCResult = 2; -- Updated
 

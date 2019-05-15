@@ -1,4 +1,4 @@
--- SetupConfig: {}
+-- SetupConfig: { "AddRequires": [ "Model.CK.GuestUserTable" ] }
 
 create transformer on CK.sAuthUserOnLogin
 as
@@ -25,7 +25,7 @@ begin
     		if @Scheme = 'Guest'
 		    begin
 
-          update CK.tUser set
+          update CK.tGuestUser set
              LastLoginTime = sysutcdatetime()
             ,SuccessfullLoginCount = SuccessfullLoginCount + 1
           where GuestUserId = @UserId

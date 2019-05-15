@@ -58,6 +58,11 @@ namespace CK.DB.GuestUser
             var mode = actualLogin
                 ? UCLMode.UpdateOnly | UCLMode.WithActualLogin
                 : UCLMode.UpdateOnly | UCLMode.WithCheckLogin;
+
+            // Override expiration date and active to avoid security issues
+            info.ExpirationDateUtc = null;
+            info.Active = null;
+
             var result = await GuestUserUCLAsync( ctx, 1, 0, info, mode, cancellationToken );
             return result.LoginResult;
         }

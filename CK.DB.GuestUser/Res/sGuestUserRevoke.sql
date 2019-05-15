@@ -16,11 +16,9 @@ begin
 
     declare @TokenId int;
 
-    update g set
-         @TokenId = TokenId
-        ,TokenId = 0
-        ,Active = 0
-    from CK.tAccessLink l;
+    update CK.tGuestUser
+    set @TokenId = TokenId, TokenId = 0
+    where GuestUserId = @GuestUserId;
 
     if @DestroyToken = 1
     begin

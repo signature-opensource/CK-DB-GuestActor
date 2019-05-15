@@ -1,6 +1,6 @@
 -- SetupConfig: { "Requires": [ "CK.sAuthUserOnLogin" ] }
 --
--- @Token can not be null. This is the key that identifies a guest user.
+-- @Token is the key that identifies a guest user. It can be null for mode 1 or 3 (mode&1)!=0 (creation).
 --
 -- @Mode (flags): CreateOnly = 1, UpdateOnly = 2, CreateOrUpdate = 3, WithCheckLogin = 4, WithActualLogin = 8.
 --                @Mode is normalized:
@@ -59,7 +59,6 @@ begin
 
     if @ActorId is null or @ActorId <= 0 throw 50000, 'Security.AnonymousNotAllowed', 1;
     if @UserId is null or @UserId < 0 throw 50000, 'Argument.InvalidUserId', 1;
-    if @Token is null and (@Mode & 1) = 0 throw 50000, 'Argument.NullToken', 1;
     if @UserId = 0 and @Mode <> 1 and ( @Mode <> 2 or @CheckLogin = 0 ) throw 50000, 'Argument.ForUserIdZeroModeMustBeCreateOnlyOrUpdateOnlyWithLogin', 1;
 
     --[beginsp]

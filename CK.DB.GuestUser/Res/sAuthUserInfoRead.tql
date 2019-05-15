@@ -8,5 +8,6 @@ begin
     select GuestUserId, 'Guest#' + cast(GuestUserId as varchar)
     from CK.tGuestUser with(nolock)
     where GuestUserId = @UserId and @UserId > 0
+      and not exists( select 1 from CK.tUser where UserId = @UserId )
 	" after first part {select};
 end

@@ -8,7 +8,7 @@ create procedure CK.sGuestUserDestroy
 as
 begin
     if @ActorId <= 0 throw 50000, 'Security.AnonymousNotAllowed', 1;
-    if @GuestUserId = 0 throw 50000, 'Argument.InvalidGuestUserId', 1;
+    if @GuestUserId <= 0 throw 50000, 'Argument.InvalidGuestUserId', 1;
 
     --[beginsp]
 

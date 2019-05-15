@@ -60,7 +60,7 @@ begin
     if @ActorId is null or @ActorId <= 0 throw 50000, 'Security.AnonymousNotAllowed', 1;
     if @UserId is null or @UserId < 0 throw 50000, 'Argument.InvalidUserId', 1;
     if @Token is null and (@Mode & 1) = 0 throw 50000, 'Argument.NullToken', 1;
-    if @UserId = 0 and (@Mode <> 2 or @CheckLogin = 0) throw 50000, 'Argument.ForUserIdZeroModeMustBeUpdateOnlyWithLogin', 1;
+    if @UserId = 0 and @Mode <> 1 and ( @Mode <> 2 or @CheckLogin = 0 ) throw 50000, 'Argument.ForUserIdZeroModeMustBeCreateOnlyOrUpdateOnlyWithLogin', 1;
 
     --[beginsp]
 
@@ -107,7 +107,11 @@ begin
                 set @LastLoginTime = '0001-01-01';
 			    --<PreCreate revert />
 
-                exec CK.sActorCreate @ActorId, @UserId output;
+                if @UserId = 0
+                begin
+                    exec CK.sActorCreate @ActorId, @UserId output;
+                end
+
                 declare @TokenKey varchar(30) = cast(@UserId as varchar(30)); 
 
                 declare @ActualExpirationDateUtc datetime2(2) = case

@@ -12,7 +12,7 @@ using CK.SqlServer.Setup;
 namespace CK.DB.GuestUser
 {
     [SqlTable( "tGuestUser", Package = typeof( Package ) ), Versions( "1.0.0" )]
-    [SqlObjectItem( "transform:sAuthUserOnLogin, transform:sUserDestroy, transform:vUserAuthProvider" )]
+    [SqlObjectItem( "transform:sAuthUserInfoRead, transform:sAuthUserOnLogin, transform:sUserDestroy, transform:vUserAuthProvider" )]
     public abstract partial class GuestUserTable : SqlTable, IGenericAuthenticationProvider<IGuestUserInfo>
     {
         private IPocoFactory<IGuestUserInfo> _infoFactory;

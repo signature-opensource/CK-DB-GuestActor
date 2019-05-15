@@ -15,8 +15,8 @@ begin
 			  inner join CK.tTokenStore t on t.TokenId = g.TokenId
 			  where g.GuestUserId = @UserId;
 
-        if @Active <> 1 set @FailureReason = N'Auth.GuestUser.Token.Inactive';
-			  if @ExpirationDateUtc < @Now set @FailureReason = N'Auth.GuestUser.Token.Expired';
+        if @Active <> 1 set @FailureCode = 7;
+			  if @ExpirationDateUtc < @Now set @FailureReason = 7;
       end
       "
       into "CheckLoginFailure"

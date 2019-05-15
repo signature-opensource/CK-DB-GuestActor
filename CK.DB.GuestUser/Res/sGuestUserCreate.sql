@@ -6,7 +6,6 @@ create procedure CK.sGuestUserCreate
      ,@ExpirationDateUtc datetime2(2)
      ,@Active bit
      ,@GuestUserIdResult int output
-     ,@TokenIdResult int output
      ,@TokenResult varchar(128) output
 )
 as
@@ -30,8 +29,7 @@ begin
         ,null/*No login*/
         ,null/*No login*/
         ,@ExpirationDateUtc
-        ,@Active
-        ,@TokenIdResult output;
+        ,@Active;
 
     --<PostCreate />
 

@@ -31,7 +31,6 @@ create procedure CK.sGuestUserUCL
     ,@LoginFailureReason nvarchar(255) output -- Optional
     ,@ExpirationDateUtc datetime2(2) = null
     ,@Active bit = null
-    ,@TokenIdResult int = null output
 )
 as
 begin
@@ -83,7 +82,7 @@ begin
         begin
 
             -- Retrieve the bound guest user id
-            select @ActualUserId = GuestUserId, @LastLoginTime = LastLoginTime, @TokenIdResult = @TokenId
+            select @ActualUserId = GuestUserId, @LastLoginTime = LastLoginTime
 	        from CK.tGuestUser
 	        where TokenId = @TokenId;
 
@@ -129,7 +128,7 @@ begin
                     ,@Token output;
 
                 insert into CK.tGuestUser( GuestUserId, TokenId, LastLoginTime )
-                    values( @UserId, @TokenIdResult, @LastLoginTime );
+                    values( @UserId, @TokenId, @LastLoginTime );
 
                 set @UCResult = 1; -- Created
 

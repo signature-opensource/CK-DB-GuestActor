@@ -32,16 +32,13 @@ namespace CK.DB.GuestUser
         {
             public readonly int GuestUserId;
 
-            public readonly int TokenId;
-
             public readonly string Token;
 
-            public bool Success => GuestUserId > 0 && TokenId > 0;
+            public bool Success => GuestUserId > 0 && !string.IsNullOrEmpty( Token );
 
-            public CreateResult( int guestUserIdResult, int tokenIdResult, string tokenResult )
+            public CreateResult( int guestUserIdResult, string tokenResult )
             {
                 GuestUserId = guestUserIdResult;
-                TokenId = tokenIdResult;
                 Token = tokenResult;
             }
         }

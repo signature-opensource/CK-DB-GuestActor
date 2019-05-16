@@ -25,6 +25,12 @@ namespace CK.DB.GuestUser
             return result.LoginResult;
         }
 
+        [SqlProcedure( "sGuestUserRefresh" )]
+        public abstract void RefreshGuestUser( ISqlCallContext ctx, int actorId, int guestUserId, DateTime expirationDateUtc );
+
+        [SqlProcedure( "sGuestUserActivate" )]
+        public abstract void ActivateGuestUser( ISqlCallContext ctx, int actorId, int guestUserId, bool active );
+
         [SqlProcedure( "sGuestUserDestroy" )]
         public abstract void DestroyGuestUser( ISqlCallContext ctx, int actorId, int guestUserId );
 

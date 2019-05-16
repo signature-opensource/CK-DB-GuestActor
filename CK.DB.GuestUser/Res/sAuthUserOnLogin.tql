@@ -16,7 +16,7 @@ begin
 			  where g.GuestUserId = @UserId;
 
         if @Active <> 1 set @FailureCode = 7;
-			  if @ExpirationDateUtc < @Now set @FailureReason = 7;
+			  if @ExpirationDateUtc < @Now set @FailureCode = 7;
       end
       "
       into "CheckLoginFailure"

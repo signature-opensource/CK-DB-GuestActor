@@ -67,6 +67,12 @@ namespace CK.DB.GuestUser
             return result.LoginResult;
         }
 
+        [SqlProcedure( "sGuestUserRefresh" )]
+        public abstract Task RefreshGuestUserAsync( ISqlCallContext ctx, int actorId, int guestUserId, DateTime expirationDateUtc, CancellationToken cancellationToken = default );
+
+        [SqlProcedure( "sGuestUserActivate" )]
+        public abstract Task ActivateGuestUserAsync( ISqlCallContext ctx, int actorId, int guestUserId, bool active, CancellationToken cancellationToken = default );
+
         [SqlProcedure( "sGuestUserDestroy" )]
         public abstract Task DestroyGuestUserAsync( ISqlCallContext ctx, int actorId, int guestUserId, CancellationToken cancellationToken = default );
 

@@ -24,7 +24,7 @@ create procedure CK.sGuestActorUCL
 (
      @ActorId int
     ,@UserId int /*input*/ output
-    ,@Token varchar(71) output
+    ,@Token varchar(128) output
     ,@Mode int -- not null enum { "CreateOnly" = 1, "UpdateOnly" = 2, "CreateOrUpdate" = 3, "WithCheckLogin" = 4, "WithActualLogin" = 8, "IgnoreOptimisticKey" = 16 }
     ,@UCResult int output -- not null enum { None = 0, Created = 1, Updated = 2 }
     ,@LoginFailureCode int output -- Optional

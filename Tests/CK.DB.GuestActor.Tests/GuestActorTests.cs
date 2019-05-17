@@ -28,6 +28,19 @@ namespace CK.DB.GuestActor.Tests
         }
 
         [Test]
+        public void default_payload_is_valid()
+        {
+            var guestActorTable = DBSetupTestHelper.TestHelper.StObjMap.StObjs.Obtain<GuestActorTable>();
+
+            using( var ctx = new SqlStandardCallContext( DBSetupTestHelper.TestHelper.Monitor ) )
+            {
+                var payload = guestActorTable.CreatePayload();
+                var ucResult = guestActorTable.CreateOrUpdateGuestActor( ctx, 1, 0, payload as IGuestActorInfo, UCLMode.CreateOnly );
+                ucResult.OperationResult.Should().Be( UCResult.Created );
+            }
+        }
+
+        [Test]
         public void RefreshGuestActor()
         {
             var guestActorTable = DBSetupTestHelper.TestHelper.StObjMap.StObjs.Obtain<GuestActorTable>();

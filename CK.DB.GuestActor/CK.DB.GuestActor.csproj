@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
     <LangVersion>7.2</LangVersion>
-    <Description>This package implements CK.tGuestUser table.</Description>
+    <Description>This package implements CK.tGuestActor table.</Description>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
 

@@ -1,0 +1,11 @@
+-- SetupConfig: { "AddRequires": [ "CK.sGuestActorDestroy" ] }
+
+create transformer on CK.sUserDestroy
+as
+begin
+    inject "
+        -- Destroys any related guest user which could have been used for authentication
+        exec CK.sGuestActorDestroy @ActorId, @UserId;
+    "
+    into "PreDestroy";
+end

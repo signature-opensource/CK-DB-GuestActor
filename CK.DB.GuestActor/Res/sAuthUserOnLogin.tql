@@ -1,4 +1,4 @@
--- SetupConfig: { "AddRequires": [ "Model.CK.GuestUserTable" ] }
+-- SetupConfig: { "AddRequires": [ "Model.CK.GuestActorTable" ] }
 
 create transformer on CK.sAuthUserOnLogin
 as
@@ -11,9 +11,9 @@ begin
 			  declare @ExpirationDateUtc datetime2(2);
 
 			  select @ExpirationDateUtc = t.ExpirationDateUtc, @Active = t.Active
-			  from CK.tGuestUser g
+			  from CK.tGuestActor g
 			  inner join CK.tTokenStore t on t.TokenId = g.TokenId
-			  where g.GuestUserId = @UserId;
+			  where g.GuestActorId = @UserId;
 
         if @Active <> 1 set @FailureCode = 7;
 			  if @ExpirationDateUtc < @Now set @FailureCode = 7;
@@ -25,10 +25,10 @@ begin
     		if @Scheme = 'Guest'
 		    begin
 
-          update CK.tGuestUser set
+          update CK.tGuestActor set
              LastLoginTime = sysutcdatetime()
             ,SuccessfullLoginCount = SuccessfullLoginCount + 1
-          where GuestUserId = @UserId
+          where GuestActorId = @UserId
 
 		    end
     " into "LoginSucceed"

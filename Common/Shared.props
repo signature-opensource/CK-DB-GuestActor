@@ -11,7 +11,7 @@
       On appveyor, the clone folder MUST be set to the solution path in the CK-World.
       For this solution, it is:
 
-      clone_folder: C:\CK-World\CK-Database-Projects\CK-DB-GuestUser
+      clone_folder: C:\CK-World\CK-Database-Projects\CK-DB-GuestActor
 
       This must be adapted for each solution/repository.
   -->

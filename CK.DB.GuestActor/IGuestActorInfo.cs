@@ -1,9 +1,9 @@
 using System;
 using CK.Core;
 
-namespace CK.DB.GuestUser
+namespace CK.DB.GuestActor
 {
-    public interface IGuestUserInfo : IPoco
+    public interface IGuestActorInfo : IPoco
     {
         string Token { get; set; }
 

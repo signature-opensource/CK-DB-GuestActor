@@ -1,9 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <Import Project="..\..\Common\Shared.props" />
   <PropertyGroup>
     <TargetFrameworks>net461;netcoreapp2.1</TargetFrameworks>
     <LangVersion>7.3</LangVersion>
-    <Description>This package contains tests for CK.DB.GuestUser (uses CK.DB.Tests.NUnit).</Description>
+    <Description>This package contains tests for CK.DB.GuestActor (uses CK.DB.Tests.NUnit).</Description>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' != 'net461' ">
@@ -28,6 +28,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\CK.DB.GuestUser\CK.DB.GuestUser.csproj" />
+    <ProjectReference Include="..\..\CK.DB.GuestActor\CK.DB.GuestActor.csproj" />
   </ItemGroup>
 </Project>

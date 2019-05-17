@@ -1,11 +1,11 @@
 -- SetupConfig: {}
 
-create procedure CK.sGuestUserCreate
+create procedure CK.sGuestActorCreate
 (
       @ActorId int
      ,@ExpirationDateUtc datetime2(2)
      ,@Active bit
-     ,@GuestUserIdResult int output
+     ,@GuestActorIdResult int output
      ,@TokenResult varchar(128) output
 )
 as
@@ -18,11 +18,11 @@ begin
 
     --<PreCreate revert />
 
-    set @GuestUserIdResult = 0;
+    set @GuestActorIdResult = 0;
 
-    exec CK.sGuestUserUCL
+    exec CK.sGuestActorUCL
          @ActorId
-        ,@GuestUserIdResult output
+        ,@GuestActorIdResult output
         ,@TokenResult output
         ,1
         ,null/*UCResult should be 1*/

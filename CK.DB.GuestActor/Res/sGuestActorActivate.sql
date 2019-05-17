@@ -1,23 +1,23 @@
 -- SetupConfig: { "Requires": [ "CK.sTokenActivate" ] }
 
-create procedure CK.sGuestUserActivate
+create procedure CK.sGuestActorActivate
 (
      @ActorId int
-    ,@GuestUserId int
+    ,@GuestActorId int
     ,@Active bit
 )
 as
 begin
 
-    if @GuestUserId <= 0 throw 50000, 'Argument.InvalidGuestUserId', 1;
+    if @GuestActorId <= 0 throw 50000, 'Argument.InvalidGuestActorId', 1;
 
     --[beginsp]
 
     declare @TokenId int;
     
     select @TokenId = TokenId
-    from CK.tGuestUser
-    where GuestUserId = @GuestUserId;
+    from CK.tGuestActor
+    where GuestActorId = @GuestActorId;
 
     exec CK.sTokenActivate @ActorId, @TokenId, @Active;
 

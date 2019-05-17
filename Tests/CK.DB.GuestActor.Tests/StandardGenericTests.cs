@@ -2,26 +2,26 @@ using System;
 using System.Threading.Tasks;
 using CK.Core;
 using CK.SqlServer;
+using CK.Testing;
 using Dapper;
 using NUnit.Framework;
-using static CK.Testing.DBSetupTestHelper;
 
-namespace CK.DB.GuestUser.Tests
+namespace CK.DB.GuestActor.Tests
 {
     [TestFixture]
     public class StandardGenericTests
     {
         [Test]
-        public void GuestUser_AuthProvider_is_registered()
+        public void GuestActor_AuthProvider_is_registered()
         {
             Auth.Tests.AuthTests.CheckProviderRegistration( "Guest" );
         }
 
         [Test]
-        public void standard_generic_tests_for_GuestUser_provider()
+        public void standard_generic_tests_for_GuestActor_provider()
         {
-            var auth = TestHelper.StObjMap.StObjs.Obtain<Auth.Package>();
-            var f = TestHelper.StObjMap.StObjs.Obtain<IPocoFactory<IGuestUserInfo>>();
+            var auth = DBSetupTestHelper.TestHelper.StObjMap.StObjs.Obtain<Auth.Package>();
+            var f = DBSetupTestHelper.TestHelper.StObjMap.StObjs.Obtain<IPocoFactory<IGuestActorInfo>>();
             Auth.Tests.AuthTests.StandardTestForGenericAuthenticationProvider
             (
                 auth,
@@ -40,10 +40,10 @@ namespace CK.DB.GuestUser.Tests
         }
 
         [Test]
-        public async Task standard_generic_tests_for_GuestUser_provider_Async()
+        public async Task standard_generic_tests_for_GuestActor_provider_Async()
         {
-            var auth = TestHelper.StObjMap.StObjs.Obtain<Auth.Package>();
-            var f = TestHelper.StObjMap.StObjs.Obtain<IPocoFactory<IGuestUserInfo>>();
+            var auth = DBSetupTestHelper.TestHelper.StObjMap.StObjs.Obtain<Auth.Package>();
+            var f = DBSetupTestHelper.TestHelper.StObjMap.StObjs.Obtain<IPocoFactory<IGuestActorInfo>>();
             await Auth.Tests.AuthTests.StandardTestForGenericAuthenticationProviderAsync
             (
                 auth,
@@ -63,7 +63,7 @@ namespace CK.DB.GuestUser.Tests
 
         private static string GetTokenOrDefault( ISqlConnectionStringProvider connectionStringProvider, int userId )
         {
-            using( var ctx = new SqlStandardCallContext( TestHelper.Monitor ) )
+            using( var ctx = new SqlStandardCallContext( DBSetupTestHelper.TestHelper.Monitor ) )
             {
                 return ctx
                       .GetConnectionController( connectionStringProvider )
@@ -72,8 +72,8 @@ namespace CK.DB.GuestUser.Tests
                            @"
 select s.Token
 from CK.tTokenStore s
-inner join CK.tGuestUser u on u.TokenId = s.TokenId
-where u.GuestUserId = @UserId 
+inner join CK.tGuestActor u on u.TokenId = s.TokenId
+where u.GuestActorId = @UserId 
                     ",
                            new { UserId = userId }
                        );

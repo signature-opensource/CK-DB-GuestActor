@@ -6,13 +6,13 @@ using CK.Core;
 using CK.DB.Auth;
 using Microsoft.AspNetCore.Http;
 
-namespace CK.DB.GuestUser
+namespace CK.DB.GuestActor
 {
-    public class GuestUserDirectLoginAllower : IWebFrontAuthUnsafeDirectLoginAllowService
+    public class GuestActorDirectLoginAllower : IWebFrontAuthUnsafeDirectLoginAllowService
     {
-        private readonly IPocoFactory<IGuestUserInfo> _infoFactory;
+        private readonly IPocoFactory<IGuestActorInfo> _infoFactory;
 
-        public GuestUserDirectLoginAllower( IPocoFactory<IGuestUserInfo> infoFactory )
+        public GuestActorDirectLoginAllower( IPocoFactory<IGuestActorInfo> infoFactory )
         {
             _infoFactory = infoFactory;
         }
@@ -28,7 +28,7 @@ namespace CK.DB.GuestUser
                 }
                 monitor.Trace( "Valid scheme" );
 
-                IGuestUserInfo info;
+                IGuestActorInfo info;
                 try
                 {
                     info = _infoFactory.ExtractPayload( payload );

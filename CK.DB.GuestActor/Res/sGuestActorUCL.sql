@@ -14,13 +14,13 @@
 --
 -- When @UserId is not 0, it must match with the one of the token otherwise it is an error
 -- and an exception is thrown because:
---  - When updating it means that there is a mismatch of GuestUserId/TokenId account in the calling code.
+--  - When updating it means that there is a mismatch of GuestActorId/TokenId account in the calling code.
 --  - When creating it means that another user with the same token account is already registered and
 --    this should never happen.
 --
 -- When extending this procedure, during update null parameters must be left unchanged.
 --
-create procedure CK.sGuestUserUCL
+create procedure CK.sGuestActorUCL
 (
      @ActorId int
     ,@UserId int /*input*/ output
@@ -81,8 +81,8 @@ begin
         begin
 
             -- Retrieve the bound guest user id
-            select @ActualUserId = GuestUserId, @LastLoginTime = LastLoginTime
-	        from CK.tGuestUser
+            select @ActualUserId = GuestActorId, @LastLoginTime = LastLoginTime
+	        from CK.tGuestActor
 	        where TokenId = @TokenId;
 
         end
@@ -124,13 +124,13 @@ begin
                 exec CK.sTokenCreate
                      @ActorId
                     ,@TokenKey
-                    ,'CK.DB.GuestUser'
+                    ,'CK.DB.GuestActor'
                     ,@ActualExpirationDateUtc
                     ,@ActualActive
                     ,@TokenId output
                     ,@Token output;
 
-                insert into CK.tGuestUser( GuestUserId, TokenId, LastLoginTime )
+                insert into CK.tGuestActor( GuestActorId, TokenId, LastLoginTime )
                     values( @UserId, @TokenId, @LastLoginTime );
 
                 set @UCResult = 1; -- Created
@@ -196,9 +196,9 @@ begin
                 if @ActualLogin = 1 and @LoginFailureCode is null
                 begin
 
-                    update CK.tGuestUser
+                    update CK.tGuestActor
                     set LastLoginTime = @Now
-			        where GuestUserId = @UserId and TokenId = @TokenId;
+			        where GuestActorId = @UserId and TokenId = @TokenId;
 
                 end
 

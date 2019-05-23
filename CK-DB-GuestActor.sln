@@ -20,6 +20,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CK.DB.GuestActor", "CK.DB.G
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CK.DB.GuestActor.Tests", "Tests\CK.DB.GuestActor.Tests\CK.DB.GuestActor.Tests.csproj", "{65C01675-6983-45C2-8C62-B25D005F416F}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeCakeBuilder", "CodeCakeBuilder\CodeCakeBuilder.csproj", "{C2700C4A-270A-4984-AAD5-CFCEDA8E1272}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,6 +36,10 @@ Global
 		{65C01675-6983-45C2-8C62-B25D005F416F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65C01675-6983-45C2-8C62-B25D005F416F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65C01675-6983-45C2-8C62-B25D005F416F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2700C4A-270A-4984-AAD5-CFCEDA8E1272}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2700C4A-270A-4984-AAD5-CFCEDA8E1272}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2700C4A-270A-4984-AAD5-CFCEDA8E1272}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2700C4A-270A-4984-AAD5-CFCEDA8E1272}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -9,9 +9,9 @@
     <OutputType>Exe</OutputType>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="CK.DB.Auth.Tests" Version="0.0.0--02ahlgk-local" />
-    <PackageReference Include="CK.DB.Tests.NUnit" Version="0.0.0--02ahlgj-local" />
-    <PackageReference Include="CK.SqlServer.Dapper" Version="0.0.0--02ahlgj-local" />
+    <PackageReference Include="CK.DB.Auth.Tests" Version="5.0.1--0017-develop" />
+    <PackageReference Include="CK.DB.Tests.NUnit" Version="10.0.1--0023-develop" />
+    <PackageReference Include="CK.SqlServer.Dapper" Version="0.2.1--0024-develop" />
     <PackageReference Include="FluentAssertions" Version="5.4.1" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFramework)' != 'net461' ">

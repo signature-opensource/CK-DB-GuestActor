@@ -6,16 +6,13 @@
     <Description>This package implements CK.tGuestActor table.</Description>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="CK.AspNet.Auth" Version="5.0.1--0014-develop" />
-    <PackageReference Include="CK.DB.Actor" Version="5.0.1--0014-develop" />
-    <PackageReference Include="CK.DB.Auth" Version="5.0.1--0014-develop" />
-    <PackageReference Include="CK.DB.TokenStore" Version="0.1.0" />
+    <PackageReference Include="CK.AspNet.Auth" Version="0.0.0--02ahpg0-local" />
+    <PackageReference Include="CK.DB.Actor" Version="0.0.0--02ahlgk-local" />
+    <PackageReference Include="CK.DB.Auth" Version="0.0.0--02ahlgk-local" />
+    <PackageReference Include="CK.DB.TokenStore" Version="0.0.0--02ahlgk-local" />
   </ItemGroup>
-
   <ItemGroup>
     <EmbeddedResource Include="**\*.sql;**\*.tql;**\*.y4" Exclude="bin\**;obj\**;@(EmbeddedResource)" />
   </ItemGroup>
-
 </Project>

@@ -9,8 +9,8 @@
     <OutputType>Exe</OutputType>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="CK.DB.Auth.Tests" Version="5.0.1--0018-develop" />
-    <PackageReference Include="CK.DB.Tests.NUnit" Version="10.0.1--0024-develop" />
+    <PackageReference Include="CK.DB.Auth.Tests" Version="5.0.1--0019-develop" />
+    <PackageReference Include="CK.DB.Tests.NUnit" Version="10.0.1--0025-develop" />
     <PackageReference Include="CK.SqlServer.Dapper" Version="0.2.1--0026-develop" />
     <PackageReference Include="FluentAssertions" Version="5.4.1" />
   </ItemGroup>

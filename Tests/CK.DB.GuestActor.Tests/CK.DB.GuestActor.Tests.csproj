@@ -12,7 +12,7 @@
     <PackageReference Include="CK.DB.Auth.Tests" Version="5.0.1--0022-develop" />
     <PackageReference Include="CK.DB.Tests.NUnit" Version="10.0.1--0028-develop" />
     <PackageReference Include="CK.SqlServer.Dapper" Version="0.2.1--0029-develop" />
-    <PackageReference Include="FluentAssertions" Version="5.4.1" />
+    <PackageReference Include="FluentAssertions" Version="5.6.0" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFramework)' != 'net461' ">
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />

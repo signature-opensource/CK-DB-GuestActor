@@ -8,7 +8,7 @@ install:
   - ps: ./CodeCakeBuilder/InstallCredentialProvider.ps1
 version: build{build}
 image: Visual Studio 2017
-clone_folder: C:\CK-World\CK-Database-Projects\CK-DB-GuestActor
+clone_folder: C:\CKli-World\CK-Database-Projects\CK-DB-GuestActor
 branches:
   only:
     - master

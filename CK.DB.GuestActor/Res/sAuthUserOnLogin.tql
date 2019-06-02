@@ -1,0 +1,35 @@
+-- SetupConfig: { "AddRequires": [ "Model.CK.GuestActorTable" ] }
+
+create transformer on CK.sAuthUserOnLogin
+as
+begin
+    inject "
+		  if @Scheme = 'Guest'
+      begin
+			  declare @Now datetime2(2) = sysutcdatetime();
+        declare @Active bit;
+			  declare @ExpirationDateUtc datetime2(2);
+
+			  select @ExpirationDateUtc = t.ExpirationDateUtc, @Active = t.Active
+			  from CK.tGuestActor g
+			  inner join CK.tTokenStore t on t.TokenId = g.TokenId
+			  where g.GuestActorId = @UserId;
+
+        if @Active <> 1 set @FailureCode = 7;
+			  if @ExpirationDateUtc < @Now set @FailureCode = 7;
+      end
+      "
+      into "CheckLoginFailure"
+
+    inject "
+    		if @Scheme = 'Guest'
+		    begin
+
+          update CK.tGuestActor set
+             LastLoginTime = sysutcdatetime()
+            ,SuccessfullLoginCount = SuccessfullLoginCount + 1
+          where GuestActorId = @UserId
+
+		    end
+    " into "LoginSucceed"
+end

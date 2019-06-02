@@ -1,0 +1,13 @@
+-- SetupConfig: { "AddRequires": [ "Model.CK.GuestActorTable" ] } 
+
+create transformer on CK.sAuthUserInfoRead
+as
+begin
+	inject "
+	  union all
+    select GuestActorId, 'Guest#' + cast(GuestActorId as varchar)
+    from CK.tGuestActor with(nolock)
+    where GuestActorId = @UserId and @UserId > 0
+      and not exists( select 1 from CK.tUser where UserId = @UserId )
+	" after first part {select};
+end

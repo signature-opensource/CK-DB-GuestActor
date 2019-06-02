@@ -1,0 +1,12 @@
+-- SetupConfig: { "AddRequires": [ "Model.CK.GuestActorTable" ] } 
+
+create transformer on CK.vUserAuthProvider
+as
+begin
+	inject "
+	  union all
+	  select GuestActorId, 'Guest', case LastLoginTime when '0001-01-01' then null else LastLoginTime end
+    from CK.tGuestActor
+    where GuestActorId > 0
+	" after first part {select};
+end

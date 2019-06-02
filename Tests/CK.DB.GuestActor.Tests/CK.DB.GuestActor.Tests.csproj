@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\..\Common\Shared.props" />
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp2.1</TargetFrameworks>
+    <LangVersion>7.3</LangVersion>
+    <Description>This package contains tests for CK.DB.GuestActor (uses CK.DB.Tests.NUnit).</Description>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="CK.DB.Auth.Tests" Version="5.1.0" />
+    <PackageReference Include="CK.DB.Tests.NUnit" Version="10.1.0" />
+    <PackageReference Include="CK.SqlServer.Dapper" Version="0.3.0" />
+    <PackageReference Include="FluentAssertions" Version="5.6.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.12.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\CK.DB.GuestActor\CK.DB.GuestActor.csproj" />
+  </ItemGroup>
+</Project>

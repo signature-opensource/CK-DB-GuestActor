@@ -58,7 +58,6 @@ namespace CK.DB.GuestActor
         /// <param name="ctx">The call context to use.</param>
         /// <param name="info">The payload to challenge.</param>
         /// <param name="actualLogin">Set it to false to avoid login side effect (such as updating the LastLoginTime) on success.</param>
-        /// <param name="cancellationToken">Optional cancellation token.</param>
         /// <returns>The <see cref="LoginResult"/>.</returns>
         public LoginResult LoginGuestActor( ISqlCallContext ctx, IGuestActorInfo info, bool actualLogin = true )
         {

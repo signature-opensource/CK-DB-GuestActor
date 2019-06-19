@@ -15,6 +15,10 @@ namespace CK.DB.GuestActor
     {
         private readonly IPocoFactory<IGuestActorInfo> _infoFactory;
 
+        /// <summary>
+        /// Instantiates a new GuestActor direct login allower
+        /// </summary>
+        /// <param name="infoFactory">The factory used for payload extraction.</param>
         public GuestActorDirectLoginAllower( IPocoFactory<IGuestActorInfo> infoFactory )
         {
             _infoFactory = infoFactory;

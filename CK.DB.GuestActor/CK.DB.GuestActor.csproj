@@ -10,7 +10,7 @@
     <PackageReference Include="CK.AspNet.Auth" Version="5.2.1--0007-develop" />
     <PackageReference Include="CK.DB.Actor" Version="5.1.1--0015-develop" />
     <PackageReference Include="CK.DB.Auth" Version="5.1.1--0015-develop" />
-    <PackageReference Include="CK.DB.TokenStore" Version="0.2.1--0018-develop" />
+    <PackageReference Include="CK.DB.TokenStore" Version="0.2.1--0019-develop" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="**\*.sql;**\*.tql;**\*.y4" Exclude="bin\**;obj\**;@(EmbeddedResource)" />

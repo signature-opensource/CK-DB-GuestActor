@@ -1,4 +1,4 @@
-using CK.Setup;
+using CK.Core;
 
 namespace CK.DB.GuestActor
 {

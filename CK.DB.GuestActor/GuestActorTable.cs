@@ -5,7 +5,6 @@ using CK.Core;
 using CK.DB.Actor;
 using CK.DB.Auth;
 using CK.DB.TokenStore;
-using CK.Setup;
 using CK.SqlServer;
 
 namespace CK.DB.GuestActor

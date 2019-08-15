@@ -1,7 +1,7 @@
 using System;
 using CK.DB.Auth;
 using CK.SqlServer;
-using CK.SqlServer.Setup;
+using CK.Core;
 
 namespace CK.DB.GuestActor
 {

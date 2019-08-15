@@ -7,7 +7,6 @@ using CK.DB.Auth;
 using CK.DB.TokenStore;
 using CK.Setup;
 using CK.SqlServer;
-using CK.SqlServer.Setup;
 
 namespace CK.DB.GuestActor
 {

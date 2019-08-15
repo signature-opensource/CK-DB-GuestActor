@@ -1,5 +1,4 @@
 using CK.Setup;
-using CK.SqlServer.Setup;
 
 namespace CK.DB.GuestActor
 {

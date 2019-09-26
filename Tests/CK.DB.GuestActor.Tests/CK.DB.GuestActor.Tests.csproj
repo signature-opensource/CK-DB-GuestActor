@@ -4,16 +4,15 @@
     <TargetFrameworks>netcoreapp2.1</TargetFrameworks>
     <LangVersion>7.3</LangVersion>
     <Description>This package contains tests for CK.DB.GuestActor (uses CK.DB.Tests.NUnit).</Description>
-    <OutputType>Exe</OutputType>
     <IsPackable>True</IsPackable>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="CK.DB.Auth.Tests" Version="5.2.0" />
-    <PackageReference Include="CK.DB.Tests.NUnit" Version="10.2.0" />
-    <PackageReference Include="CK.SqlServer.Dapper" Version="0.4.0" />
-    <PackageReference Include="FluentAssertions" Version="5.7.0" />
+    <PackageReference Include="CK.DB.Auth.Tests" Version="6.0.0" />
+    <PackageReference Include="CK.DB.Tests.NUnit" Version="11.0.0" />
+    <PackageReference Include="CK.SqlServer.Dapper" Version="0.5.0" />
+    <PackageReference Include="FluentAssertions" Version="5.9.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
-    <PackageReference Include="NUnit3TestAdapter" Version="3.13.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.15.1" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

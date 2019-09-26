@@ -7,10 +7,10 @@
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="CK.AspNet.Auth" Version="5.3.0" />
-    <PackageReference Include="CK.DB.Actor" Version="5.2.0" />
-    <PackageReference Include="CK.DB.Auth" Version="5.2.0" />
-    <PackageReference Include="CK.DB.TokenStore" Version="0.3.0" />
+    <PackageReference Include="CK.AspNet.Auth" Version="6.0.0" />
+    <PackageReference Include="CK.DB.Actor" Version="6.0.0" />
+    <PackageReference Include="CK.DB.Auth" Version="6.0.0" />
+    <PackageReference Include="CK.DB.TokenStore" Version="0.4.0" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="**\*.sql;**\*.tql;**\*.y4" Exclude="bin\**;obj\**;@(EmbeddedResource)" />

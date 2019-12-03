@@ -12,7 +12,8 @@ namespace CK.DB.GuestActor
     /// <summary>
     /// Acts both as a GuestActor table and as Guest actors authentication provider.
     /// </summary>
-    [SqlTable( "tGuestActor", Package = typeof( Package ) ), Versions( "1.0.0" )]
+    [SqlTable( "tGuestActor", Package = typeof( Package ) )]
+    [Versions( "1.0.0, 2.0.0" )]
     [SqlObjectItem( "transform:sAuthUserInfoRead, transform:sAuthUserOnLogin, transform:sUserDestroy, transform:vUserAuthProvider" )]
     public abstract partial class GuestActorTable : SqlTable, IGenericAuthenticationProvider<IGuestActorInfo>
     {
@@ -159,28 +160,17 @@ namespace CK.DB.GuestActor
         protected abstract Task<UCLResult> GuestActorUCLAsync( ISqlCallContext ctx, int actorId, int userId, [ParameterSource] IGuestActorInfo info, UCLMode mode, CancellationToken cancellationToken );
 
         /// <summary>
-        /// Refreshes the guest actor expiration date.
-        /// </summary>
-        /// <param name="ctx">The call context to use.</param>
-        /// <param name="actorId">The acting actor identifier.</param>
-        /// <param name="guestActorId">The guest actor actor to refresh.</param>
-        /// <param name="expirationDateUtc">The expiration date. Must always be in the future.</param>
-        /// <param name="cancellationToken">Optional cancellation token.</param>
-        /// <returns>The awaitable.</returns>
-        [SqlProcedure( "sGuestActorRefresh" )]
-        public abstract Task RefreshGuestActorAsync( ISqlCallContext ctx, int actorId, int guestActorId, DateTime expirationDateUtc, CancellationToken cancellationToken = default );
-
-        /// <summary>
-        /// Refreshes the bound token expiration date.
+        /// Activates/deactivates and/or sets the bound token expiration date.
         /// </summary>
         /// <param name="ctx">The call context to use.</param>
         /// <param name="actorId">The acting actor identifier.</param>
         /// <param name="guestActorId">The guest actor to activate.</param>
-        /// <param name="active">The new activity state. <c>false</c> will deactivate the guest actor.</param>
+        /// <param name="active">When not null, this is the new activity state. <c>false</c> will deactivate the guest actor.</param>
+        /// <param name="expirationDateUtc">When not null, this is the new expiration date that must always be in the future.</param>
         /// <param name="cancellationToken">Optional cancellation token.</param>
         /// <returns>The awaitable.</returns>
         [SqlProcedure( "sGuestActorActivate" )]
-        public abstract Task ActivateGuestActorAsync( ISqlCallContext ctx, int actorId, int guestActorId, bool active, CancellationToken cancellationToken = default );
+        public abstract Task ActivateGuestActorAsync( ISqlCallContext ctx, int actorId, int guestActorId, bool? active = null, DateTime? expirationDateUtc = null, CancellationToken cancellationToken = default );
 
         /// <summary>
         /// Destroys an existing guest actor.

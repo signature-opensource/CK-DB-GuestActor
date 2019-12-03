@@ -2,9 +2,10 @@
 
 create procedure CK.sGuestActorActivate
 (
-     @ActorId int
-    ,@GuestActorId int
-    ,@Active bit
+     @ActorId int,
+     @GuestActorId int,
+     @Active bit = null,
+     @ExpirationDateUtc datetime2(2) = null
 )
 as
 begin
@@ -14,12 +15,9 @@ begin
     --[beginsp]
 
     declare @TokenId int;
-    
-    select @TokenId = TokenId
-    from CK.tGuestActor
-    where GuestActorId = @GuestActorId;
+    select @TokenId = TokenId from CK.tGuestActor where GuestActorId = @GuestActorId;
 
-    exec CK.sTokenActivate @ActorId, @TokenId, @Active;
+    exec CK.sTokenActivate @ActorId, @TokenId, @Active, @ExpirationDateUtc;
 
     --[endsp]
 

@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <Import Project="..\Common\Shared.props" />
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
@@ -7,14 +7,12 @@
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="CK.AspNet.Auth" Version="6.2.1--0025-develop" />
-    <PackageReference Include="CK.DB.Actor" Version="6.1.1--0014-develop" />
-    <PackageReference Include="CK.DB.Auth" Version="6.1.1--0014-develop" />
-    <PackageReference Include="CK.DB.TokenStore" Version="0.5.1--0012-develop" />
+    <PackageReference Include="CK.AspNet.Auth" Version="6.2.1--0027-develop" />
+    <PackageReference Include="CK.DB.Actor" Version="6.1.1--0016-develop" />
+    <PackageReference Include="CK.DB.Auth" Version="6.1.1--0016-develop" />
+    <PackageReference Include="CK.DB.TokenStore" Version="0.5.1--0014-develop" />
   </ItemGroup>
-
   <ItemGroup>
     <EmbeddedResource Include="**\*.sql;**\*.tql;**\*.y4" Exclude="bin\**;obj\**;CodeCakeBuilder\**;packages\**;@(EmbeddedResource)" />
   </ItemGroup>
-
 </Project>

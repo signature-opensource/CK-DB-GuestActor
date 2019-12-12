@@ -20,16 +20,15 @@ begin
 
     set @GuestActorIdResult = 0;
 
-    exec CK.sGuestActorUCL
-         @ActorId
-        ,@GuestActorIdResult output
-        ,@TokenResult output
-        ,1
-        ,null/*UCResult should be 1*/
-        ,null/*No login*/
-        ,null/*No login*/
-        ,@ExpirationDateUtc
-        ,@Active;
+    exec CK.sGuestActorUCL @ActorId,
+                           @GuestActorIdResult output,
+                           @TokenResult output,
+                           1,
+                           null, /*UCResult should be 1.*/
+                           null, /*No login*/
+                           null, /*No login*/
+                           @ExpirationDateUtc,
+                           @Active;
 
     --<PostCreate />
 

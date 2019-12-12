@@ -54,7 +54,7 @@ namespace CK.DB.GuestActor.Tests
                 var loginResult = guestActorTable.LoginGuestActor( ctx, info );
                 loginResult.IsSuccess.Should().BeFalse();
                 loginResult.FailureCode.Should().Be( (int) KnownLoginFailureCode.ProviderDisabledUser );
-                guestActorTable.RefreshGuestActor( ctx, 1, createResult.GuestActorId, DateTime.UtcNow + TimeSpan.FromMinutes( 5 ) );
+                guestActorTable.ActivateGuestActor( ctx, 1, createResult.GuestActorId, null, DateTime.UtcNow + TimeSpan.FromMinutes( 5 ) );
                 guestActorTable.LoginGuestActor( ctx, info ).IsSuccess.Should().BeTrue();
             }
         }

@@ -82,24 +82,15 @@ namespace CK.DB.GuestActor
         protected abstract UCLResult GuestActorUCL( ISqlCallContext ctx, int actorId, int userId, [ParameterSource] IGuestActorInfo info, UCLMode mode );
 
         /// <summary>
-        /// Refreshes the guest actor expiration date.
-        /// </summary>
-        /// <param name="ctx">The call context to use.</param>
-        /// <param name="actorId">The acting actor identifier.</param>
-        /// <param name="guestActorId">The guest actor actor to refresh.</param>
-        /// <param name="expirationDateUtc">The expiration date. Must always be in the future.</param>
-        [SqlProcedure( "sGuestActorRefresh" )]
-        public abstract void RefreshGuestActor( ISqlCallContext ctx, int actorId, int guestActorId, DateTime expirationDateUtc );
-
-        /// <summary>
-        /// Refreshes the bound token expiration date.
+        /// Activates/deactivates and/or sets the bound token expiration date.
         /// </summary>
         /// <param name="ctx">The call context to use.</param>
         /// <param name="actorId">The acting actor identifier.</param>
         /// <param name="guestActorId">The guest actor to activate.</param>
-        /// <param name="active">The new activity state. <c>false</c> will deactivate the guest actor.</param>
+        /// <param name="active">When not null, this is the new activity state. <c>false</c> will deactivate the guest actor.</param>
+        /// <param name="expirationDateUtc">When not null, this is the new expiration date that must always be in the future.</param>
         [SqlProcedure( "sGuestActorActivate" )]
-        public abstract void ActivateGuestActor( ISqlCallContext ctx, int actorId, int guestActorId, bool active );
+        public abstract void ActivateGuestActor( ISqlCallContext ctx, int actorId, int guestActorId, bool? active = null, DateTime? expirationDateUtc = null );
 
         /// <summary>
         /// Destroys an existing guest actor.

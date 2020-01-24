@@ -10,8 +10,8 @@ image: Visual Studio 2019
 clone_folder: C:\CKli-World\CK-Database-Projects\CK-DB-GuestActor
 branches:
   only:
-    - master
-    - develop
+    - master-NetCore2
+    - develop-NetCore2
 build_script:
   - dotnet run --project CodeCakeBuilder -nointeraction
 test: off

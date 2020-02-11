@@ -1,16 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <Import Project="..\Common\Shared.props" />
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
+    <TargetFrameworks>netcoreapp3.1</TargetFrameworks>
     <LangVersion>7.2</LangVersion>
     <Description>This package implements CK.tGuestActor table.</Description>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="CK.AspNet.Auth" Version="7.0.1" />
-    <PackageReference Include="CK.DB.Actor" Version="7.0.1" />
-    <PackageReference Include="CK.DB.Auth" Version="7.0.1" />
-    <PackageReference Include="CK.DB.TokenStore" Version="0.6.1" />
+    <PackageReference Include="CK.AspNet.Auth" Version="8.0.0" />
+    <PackageReference Include="CK.DB.Actor" Version="8.0.0" />
+    <PackageReference Include="CK.DB.Auth" Version="8.0.0" />
+    <PackageReference Include="CK.DB.TokenStore" Version="0.7.0" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="**\*.sql;**\*.tql;**\*.y4" Exclude="bin\**;obj\**;CodeCakeBuilder\**;packages\**;@(EmbeddedResource)" />

@@ -1,18 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <Import Project="..\..\Common\Shared.props" />
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp2.1</TargetFrameworks>
+    <TargetFrameworks>netcoreapp3.1</TargetFrameworks>
     <LangVersion>7.3</LangVersion>
     <Description>This package contains tests for CK.DB.GuestActor (uses CK.DB.Tests.NUnit).</Description>
     <IsPackable>True</IsPackable>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="CK.DB.Auth.Tests" Version="0.0.0--02fzpmd-local+v6.0.0-a" />
-    <PackageReference Include="CK.DB.Tests.NUnit" Version="0.0.0--02fzpmc-local+v11.0.0-a" />
-    <PackageReference Include="CK.SqlServer.Dapper" Version="0.0.0--02fzohd-local+v0.4.1" />
-    <PackageReference Include="FluentAssertions" Version="5.9.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
-    <PackageReference Include="NUnit3TestAdapter" Version="3.15.1" />
+    <PackageReference Include="CK.DB.Auth.Tests" Version="0.0.0--02wtc6m-local+v9.0.1" />
+    <PackageReference Include="CK.DB.Tests.NUnit" Version="0.0.0--02wtc6l-local+v14.0.1" />
+    <PackageReference Include="CK.SqlServer.Dapper" Version="0.0.0--02wpt39-local+v0.11.0" />
+    <PackageReference Include="FluentAssertions" Version="5.10.3" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.16.1" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

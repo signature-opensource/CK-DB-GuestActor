@@ -121,14 +121,14 @@ begin
                     when @Active is not null then @Active
                     else 0 end;
 
-                exec CK.sTokenCreate
-                     @ActorId
-                    ,@TokenKey
-                    ,'CK.DB.GuestActor'
-                    ,@ActualExpirationDateUtc
-                    ,@ActualActive
-                    ,@TokenId output
-                    ,@Token output;
+                exec CK.sTokenCreate @ActorId,
+                                     @TokenKey,
+                                     'CK.DB.GuestActor',
+                                     @ActualExpirationDateUtc,
+                                     @ActualActive,
+                                     null, /* ExtraData is unused.*/
+                                     @TokenId output,
+                                     @Token output;
 
                 insert into CK.tGuestActor( GuestActorId, TokenId, LastLoginTime )
                     values( @UserId, @TokenId, @LastLoginTime );
@@ -154,17 +154,9 @@ begin
         	    if @UserId = 0 set @UserId = @ActualUserId;
 			    else if @UserId <> @ActualUserId throw 50000, 'Argument.UserIdAndTokenMismatch', 1;
 
-                if @ExpirationDateUtc <> null
-                begin
-                    exec CK.sTokenRefresh @ActorId, @TokenId, @ExpirationDateUtc;
-                end
+                exec CK.sTokenActivate @ActorId, @TokenId, @Active, @ExpirationDateUtc;
 
-                if @Active <> null
-                begin
-                    exec CK.sTokenActivate @ActorId, @TokenId, @Active;
-                end
-
-		        set @UCResult = 2; -- Updated
+                set @UCResult = 2; -- Updated
 
             end
             else

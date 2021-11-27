@@ -5,7 +5,7 @@ environment:
   SqlServer/MasterConnectionString: Server=(local)\SQL2017;Database=master;User ID=sa;Password=Password12!
 services: mssql2017
 version: build{build}
-image: Visual Studio 2019
+image: Visual Studio 2022
 clone_folder: C:\CKli-World\CK-Database-Projects\CK-DB-GuestActor
 branches:
   only:

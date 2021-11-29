@@ -2,17 +2,14 @@
   <Import Project="..\..\Common\Shared.props" />
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <LangVersion>8.0</LangVersion>
     <Description>This package contains tests for CK.DB.GuestActor (uses CK.DB.Tests.NUnit).</Description>
     <IsPackable>True</IsPackable>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="CK.DB.Auth.Tests" Version="0.0.0--03lvuwk-local" />
-    <PackageReference Include="CK.DB.Tests.NUnit" Version="0.0.0--03lvtdx-local" />
-    <PackageReference Include="CK.SqlServer.Dapper" Version="0.0.0--03lvnn6-local" />
-    <PackageReference Include="FluentAssertions" Version="5.10.3" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.3" />
-    <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
+    <PackageReference Include="CK.DB.Auth.Tests" Version="0.0.0--03lwu77-local" />
+    <PackageReference Include="CK.SqlServer.Dapper" Version="0.0.0--03lwn65-local" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.1.0" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

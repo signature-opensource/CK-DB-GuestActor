@@ -9,7 +9,7 @@
     <PackageReference Include="CK.DB.Auth.Tests" Version="14.0.0-r07" />
     <PackageReference Include="CK.SqlServer.Dapper" Version="0.16.0-r06" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
-    <PackageReference Include="NUnit3TestAdapter" Version="4.1.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

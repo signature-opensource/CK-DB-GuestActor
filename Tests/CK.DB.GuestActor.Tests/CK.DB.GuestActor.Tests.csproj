@@ -5,8 +5,8 @@
     <IsPackable>True</IsPackable>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="CK.DB.Auth.Tests" Version="14.0.1--0010-develop" />
-    <PackageReference Include="CK.SqlServer.Dapper" Version="1.0.1--0003-develop" />
+    <PackageReference Include="CK.DB.Auth.Tests" Version="14.0.1--0011-develop" />
+    <PackageReference Include="CK.SqlServer.Dapper" Version="1.0.1--0004-develop" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
   </ItemGroup>

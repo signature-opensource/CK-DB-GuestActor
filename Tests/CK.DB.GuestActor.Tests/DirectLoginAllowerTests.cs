@@ -12,7 +12,7 @@ namespace CK.DB.GuestActor.Tests
     public class DirectLoginAllowerTests
     {
         [Test]
-        public async Task resolves_successfully()
+        public async Task resolves_successfully_Async()
         {
             var infoFactory = TestHelper.StObjMap.StObjs.Obtain<IPocoFactory<IGuestActorInfo>>();
             var allower = new GuestActorDirectLoginAllower( infoFactory );
@@ -22,7 +22,7 @@ namespace CK.DB.GuestActor.Tests
         }
 
         [Test]
-        public async Task rejects_other_schemes()
+        public async Task rejects_other_schemes_Async()
         {
             var infoFactory = TestHelper.StObjMap.StObjs.Obtain<IPocoFactory<IGuestActorInfo>>();
             var allower = new GuestActorDirectLoginAllower( infoFactory );
@@ -31,7 +31,7 @@ namespace CK.DB.GuestActor.Tests
         }
 
         [Test]
-        public async Task rejects_invalid_payload()
+        public async Task rejects_invalid_payload_Async()
         {
             var infoFactory = TestHelper.StObjMap.StObjs.Obtain<IPocoFactory<IGuestActorInfo>>();
             var allower = new GuestActorDirectLoginAllower( infoFactory );
@@ -40,7 +40,7 @@ namespace CK.DB.GuestActor.Tests
         }
 
         [Test]
-        public async Task rejects_invalid_token()
+        public async Task rejects_invalid_token_Async()
         {
             var infoFactory = TestHelper.StObjMap.StObjs.Obtain<IPocoFactory<IGuestActorInfo>>();
             var allower = new GuestActorDirectLoginAllower( infoFactory );

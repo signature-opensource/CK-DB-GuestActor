@@ -12,7 +12,7 @@ namespace CK.DB.GuestActor
         /// The token associated to the guest actor.
         /// It is the guest actor identifier whenever interacting with the outside world.
         /// </summary>
-        string Token { get; set; }
+        string? Token { get; set; }
 
         /// <summary>
         /// The expiration date. Must always be in the future.

@@ -30,8 +30,12 @@ namespace CK.DB.GuestActor
             _infoFactory = infoFactory;
         }
 
-        IGuestActorInfo IGenericAuthenticationProvider<IGuestActorInfo>.CreatePayload()
-            => _infoFactory.Create();
+        public bool CanCreatePayload => true;
+
+        object IGenericAuthenticationProvider.CreatePayload() => _infoFactory.Create();
+
+        /// <inheritdoc />
+        public IGuestActorInfo CreatePayload() => _infoFactory.Create();
 
         /// <summary>
         /// Creates a <see cref="IGuestActorInfo"/> poco.

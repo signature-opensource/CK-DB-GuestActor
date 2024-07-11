@@ -6,7 +6,7 @@ using CK.SqlServer;
 using FluentAssertions;
 using NUnit.Framework;
 
-using static CK.Testing.DBSetupTestHelper;
+using static CK.Testing.MonitorTestHelper;
 
 namespace CK.DB.GuestActor.Tests
 {
@@ -16,7 +16,7 @@ namespace CK.DB.GuestActor.Tests
         [Test]
         public void create_and_destroy()
         {
-            var guestActorTable = TestHelper.StObjMap.StObjs.Obtain<GuestActorTable>();
+            var guestActorTable = SharedEngine.Map.StObjs.Obtain<GuestActorTable>();
 
             using( var ctx = new SqlStandardCallContext( TestHelper.Monitor ) )
             {
@@ -31,7 +31,7 @@ namespace CK.DB.GuestActor.Tests
         [Test]
         public void default_payload_is_valid()
         {
-            var guestActorTable = TestHelper.StObjMap.StObjs.Obtain<GuestActorTable>();
+            var guestActorTable = SharedEngine.Map.StObjs.Obtain<GuestActorTable>();
 
             using( var ctx = new SqlStandardCallContext( TestHelper.Monitor ) )
             {
@@ -44,7 +44,7 @@ namespace CK.DB.GuestActor.Tests
         [Test]
         public void RefreshGuestActor()
         {
-            var guestActorTable = TestHelper.StObjMap.StObjs.Obtain<GuestActorTable>();
+            var guestActorTable = SharedEngine.Map.StObjs.Obtain<GuestActorTable>();
 
             using( var ctx = new SqlStandardCallContext( TestHelper.Monitor ) )
             {
@@ -62,7 +62,7 @@ namespace CK.DB.GuestActor.Tests
         [Test]
         public void ActivateGuestActor()
         {
-            var guestActorTable = TestHelper.StObjMap.StObjs.Obtain<GuestActorTable>();
+            var guestActorTable = SharedEngine.Map.StObjs.Obtain<GuestActorTable>();
 
             using( var ctx = new SqlStandardCallContext( TestHelper.Monitor ) )
             {
@@ -85,7 +85,7 @@ namespace CK.DB.GuestActor.Tests
         [TestCase( false )]
         public void RevokeGuestActor( bool destroyToken )
         {
-            var guestActorTable = TestHelper.StObjMap.StObjs.Obtain<GuestActorTable>();
+            var guestActorTable = SharedEngine.Map.StObjs.Obtain<GuestActorTable>();
 
             using( var ctx = new SqlStandardCallContext( TestHelper.Monitor ) )
             {

@@ -5,7 +5,7 @@ using CK.SqlServer;
 using Dapper;
 using NUnit.Framework;
 
-using static CK.Testing.DBSetupTestHelper;
+using static CK.Testing.MonitorTestHelper;
 
 namespace CK.DB.GuestActor.Tests
 {
@@ -21,8 +21,8 @@ namespace CK.DB.GuestActor.Tests
         [Test]
         public void standard_generic_tests_for_GuestActor_provider()
         {
-            var auth = TestHelper.StObjMap.StObjs.Obtain<Auth.Package>();
-            var f = TestHelper.StObjMap.StObjs.Obtain<IPocoFactory<IGuestActorInfo>>();
+            var auth = SharedEngine.Map.StObjs.Obtain<Auth.Package>();
+            var f = SharedEngine.Map.StObjs.Obtain<IPocoFactory<IGuestActorInfo>>();
             Auth.Tests.AuthTests.StandardTestForGenericAuthenticationProvider
             (
                 auth,
@@ -43,8 +43,8 @@ namespace CK.DB.GuestActor.Tests
         [Test]
         public async Task standard_generic_tests_for_GuestActor_provider_Async()
         {
-            var auth = TestHelper.StObjMap.StObjs.Obtain<Auth.Package>();
-            var f = TestHelper.StObjMap.StObjs.Obtain<IPocoFactory<IGuestActorInfo>>();
+            var auth = SharedEngine.Map.StObjs.Obtain<Auth.Package>();
+            var f = SharedEngine.Map.StObjs.Obtain<IPocoFactory<IGuestActorInfo>>();
             await Auth.Tests.AuthTests.StandardTestForGenericAuthenticationProviderAsync
             (
                 auth,

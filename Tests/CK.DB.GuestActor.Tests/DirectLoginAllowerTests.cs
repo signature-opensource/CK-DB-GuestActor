@@ -4,7 +4,7 @@ using CK.Core;
 using FluentAssertions;
 using NUnit.Framework;
 
-using static CK.Testing.DBSetupTestHelper;
+using static CK.Testing.MonitorTestHelper;
 
 namespace CK.DB.GuestActor.Tests
 {
@@ -14,7 +14,7 @@ namespace CK.DB.GuestActor.Tests
         [Test]
         public async Task resolves_successfully_Async()
         {
-            var infoFactory = TestHelper.StObjMap.StObjs.Obtain<IPocoFactory<IGuestActorInfo>>();
+            var infoFactory = SharedEngine.Map.StObjs.Obtain<IPocoFactory<IGuestActorInfo>>();
             var allower = new GuestActorDirectLoginAllower( infoFactory );
             var payload = infoFactory.Create( info => info.Token = $"3712.{Guid.NewGuid().ToString()}");
             var allowed = await allower.AllowAsync( null, TestHelper.Monitor, "Guest", payload );
@@ -24,7 +24,7 @@ namespace CK.DB.GuestActor.Tests
         [Test]
         public async Task rejects_other_schemes_Async()
         {
-            var infoFactory = TestHelper.StObjMap.StObjs.Obtain<IPocoFactory<IGuestActorInfo>>();
+            var infoFactory = SharedEngine.Map.StObjs.Obtain<IPocoFactory<IGuestActorInfo>>();
             var allower = new GuestActorDirectLoginAllower( infoFactory );
             var allowed = await allower.AllowAsync( null, TestHelper.Monitor, "BasicLogin", null );
             allowed.Should().BeFalse();
@@ -33,7 +33,7 @@ namespace CK.DB.GuestActor.Tests
         [Test]
         public async Task rejects_invalid_payload_Async()
         {
-            var infoFactory = TestHelper.StObjMap.StObjs.Obtain<IPocoFactory<IGuestActorInfo>>();
+            var infoFactory = SharedEngine.Map.StObjs.Obtain<IPocoFactory<IGuestActorInfo>>();
             var allower = new GuestActorDirectLoginAllower( infoFactory );
             var allowed = await allower.AllowAsync( null, TestHelper.Monitor, "Guest", null );
             allowed.Should().BeFalse();
@@ -42,7 +42,7 @@ namespace CK.DB.GuestActor.Tests
         [Test]
         public async Task rejects_invalid_token_Async()
         {
-            var infoFactory = TestHelper.StObjMap.StObjs.Obtain<IPocoFactory<IGuestActorInfo>>();
+            var infoFactory = SharedEngine.Map.StObjs.Obtain<IPocoFactory<IGuestActorInfo>>();
             var allower = new GuestActorDirectLoginAllower( infoFactory );
             var payload = infoFactory.Create( info => info.Token = "   " );
             var allowed = await allower.AllowAsync( null, TestHelper.Monitor, "Guest", payload );

@@ -9,7 +9,7 @@
     <PackageReference Include="CK.AspNet.Auth" Version="0.0.0--04yzfbu-develop" />
     <PackageReference Include="CK.DB.Actor" Version="0.0.0--04yzfbn-develop" />
     <PackageReference Include="CK.DB.Auth" Version="0.0.0--04yzfbn-develop" />
-    <PackageReference Include="CK.DB.TokenStore" Version="0.0.0--04yzfbr-develop" />
+    <PackageReference Include="CK.DB.TokenStore" Version="0.0.0--04yzmh2-develop" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="**\*.sql;**\*.tql;**\*.y4" Exclude="bin\**;obj\**;CodeCakeBuilder\**;packages\**;@(EmbeddedResource)" />

@@ -6,7 +6,7 @@
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="CK.AspNet.Auth" Version="0.0.0--04yzyq9-develop" />
+    <PackageReference Include="CK.AspNet.Auth" Version="0.0.0--04z1nqv-develop" />
     <PackageReference Include="CK.DB.Actor" Version="0.0.0--04yzfbn-develop" />
     <PackageReference Include="CK.DB.Auth" Version="0.0.0--04yzfbn-develop" />
     <PackageReference Include="CK.DB.TokenStore" Version="0.0.0--04yzmh2-develop" />

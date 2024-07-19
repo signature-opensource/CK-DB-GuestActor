@@ -3,6 +3,7 @@ using System.Threading;
 using CK.Core;
 using CK.DB.Auth;
 using CK.SqlServer;
+using CK.Testing;
 using FluentAssertions;
 using NUnit.Framework;
 

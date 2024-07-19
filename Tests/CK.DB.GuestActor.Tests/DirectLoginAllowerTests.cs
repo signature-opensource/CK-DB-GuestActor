@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using CK.Core;
+using CK.Testing;
 using FluentAssertions;
 using NUnit.Framework;
 
@@ -16,7 +17,7 @@ namespace CK.DB.GuestActor.Tests
         {
             var infoFactory = SharedEngine.Map.StObjs.Obtain<IPocoFactory<IGuestActorInfo>>();
             var allower = new GuestActorDirectLoginAllower( infoFactory );
-            var payload = infoFactory.Create( info => info.Token = $"3712.{Guid.NewGuid().ToString()}");
+            var payload = infoFactory.Create( info => info.Token = $"3712.{Guid.NewGuid()}");
             var allowed = await allower.AllowAsync( null, TestHelper.Monitor, "Guest", payload );
             allowed.Should().BeTrue();
         }

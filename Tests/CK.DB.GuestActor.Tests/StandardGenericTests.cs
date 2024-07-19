@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using CK.Core;
 using CK.SqlServer;
+using CK.Testing;
 using Dapper;
 using NUnit.Framework;
 

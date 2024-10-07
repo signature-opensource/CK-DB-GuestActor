@@ -37,7 +37,7 @@ namespace CK.DB.GuestActor
         /// <returns></returns>
         public Task<bool> AllowAsync( HttpContext ctx, IActivityMonitor monitor, string scheme, object payload )
         {
-            using( monitor.OpenInfo($"{GetType()}.AllowAsync challenge") )
+            using( monitor.OpenInfo( $"{GetType()}.AllowAsync challenge" ) )
             {
                 if( scheme != "Guest" )
                 {
@@ -66,7 +66,7 @@ namespace CK.DB.GuestActor
                 }
                 monitor.Trace( "Valid payload" );
 
-                monitor.Info( "DirectLogin allowed.");
+                monitor.Info( "DirectLogin allowed." );
                 return Task.FromResult( true );
             }
         }

@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using CK.Core;
 using CK.Testing;
-using FluentAssertions;
+using Shouldly;
 using NUnit.Framework;
 
 using static CK.Testing.MonitorTestHelper;
@@ -19,7 +19,7 @@ public class DirectLoginAllowerTests
         var allower = new GuestActorDirectLoginAllower( infoFactory );
         var payload = infoFactory.Create( info => info.Token = $"3712.{Guid.NewGuid()}" );
         var allowed = await allower.AllowAsync( null, TestHelper.Monitor, "Guest", payload );
-        allowed.Should().BeTrue();
+        allowed.ShouldBeTrue();
     }
 
     [Test]
@@ -28,7 +28,7 @@ public class DirectLoginAllowerTests
         var infoFactory = SharedEngine.Map.StObjs.Obtain<IPocoFactory<IGuestActorInfo>>();
         var allower = new GuestActorDirectLoginAllower( infoFactory );
         var allowed = await allower.AllowAsync( null, TestHelper.Monitor, "BasicLogin", null );
-        allowed.Should().BeFalse();
+        allowed.ShouldBeFalse();
     }
 
     [Test]
@@ -37,7 +37,7 @@ public class DirectLoginAllowerTests
         var infoFactory = SharedEngine.Map.StObjs.Obtain<IPocoFactory<IGuestActorInfo>>();
         var allower = new GuestActorDirectLoginAllower( infoFactory );
         var allowed = await allower.AllowAsync( null, TestHelper.Monitor, "Guest", null );
-        allowed.Should().BeFalse();
+        allowed.ShouldBeFalse();
     }
 
     [Test]
@@ -47,6 +47,6 @@ public class DirectLoginAllowerTests
         var allower = new GuestActorDirectLoginAllower( infoFactory );
         var payload = infoFactory.Create( info => info.Token = "   " );
         var allowed = await allower.AllowAsync( null, TestHelper.Monitor, "Guest", payload );
-        allowed.Should().BeFalse();
+        allowed.ShouldBeFalse();
     }
 }

@@ -4,7 +4,7 @@ using CK.Core;
 using CK.DB.Auth;
 using CK.SqlServer;
 using CK.Testing;
-using FluentAssertions;
+using Shouldly;
 using NUnit.Framework;
 
 using static CK.Testing.MonitorTestHelper;
@@ -22,9 +22,9 @@ public class GuestActorTests
         using( var ctx = new SqlStandardCallContext( TestHelper.Monitor ) )
         {
             var createResult = guestActorTable.CreateGuestActor( ctx, 1, DateTime.Now + TimeSpan.FromMinutes( 5 ), true );
-            createResult.Success.Should().BeTrue();
-            createResult.GuestActorId.Should().BeGreaterThan( 0 );
-            createResult.Token.Should().NotBeEmpty();
+            createResult.Success.ShouldBeTrue();
+            createResult.GuestActorId.ShouldBeGreaterThan( 0 );
+            createResult.Token.ShouldNotBeEmpty();
             guestActorTable.DestroyGuestActor( ctx, 1, createResult.GuestActorId );
         }
     }
@@ -38,7 +38,7 @@ public class GuestActorTests
         {
             var payload = guestActorTable.CreatePayload();
             var ucResult = guestActorTable.CreateOrUpdateGuestActor( ctx, 1, 0, payload as IGuestActorInfo, UCLMode.CreateOnly );
-            ucResult.OperationResult.Should().Be( UCResult.Created );
+            ucResult.OperationResult.ShouldBe( UCResult.Created );
         }
     }
 
@@ -53,10 +53,10 @@ public class GuestActorTests
             Thread.Sleep( TimeSpan.FromSeconds( 2 ) ); // Wait until token is expired
             var info = guestActorTable.CreateUserInfo<IGuestActorInfo>( i => i.Token = createResult.Token );
             var loginResult = guestActorTable.LoginGuestActor( ctx, info );
-            loginResult.IsSuccess.Should().BeFalse();
-            loginResult.FailureCode.Should().Be( (int)KnownLoginFailureCode.ProviderDisabledUser );
+            loginResult.IsSuccess.ShouldBeFalse();
+            loginResult.FailureCode.ShouldBe( (int)KnownLoginFailureCode.ProviderDisabledUser );
             guestActorTable.ActivateGuestActor( ctx, 1, createResult.GuestActorId, null, DateTime.UtcNow + TimeSpan.FromMinutes( 5 ) );
-            guestActorTable.LoginGuestActor( ctx, info ).IsSuccess.Should().BeTrue();
+            guestActorTable.LoginGuestActor( ctx, info ).IsSuccess.ShouldBeTrue();
         }
     }
 
@@ -70,15 +70,15 @@ public class GuestActorTests
             var createResult = guestActorTable.CreateGuestActor( ctx, 1, DateTime.UtcNow + TimeSpan.FromMinutes( 5 ), false );
             var info = guestActorTable.CreateUserInfo<IGuestActorInfo>( i => i.Token = createResult.Token );
             var loginResult = guestActorTable.LoginGuestActor( ctx, info );
-            loginResult.IsSuccess.Should().BeFalse();
-            loginResult.FailureCode.Should().Be( (int)KnownLoginFailureCode.ProviderDisabledUser );
+            loginResult.IsSuccess.ShouldBeFalse();
+            loginResult.FailureCode.ShouldBe( (int)KnownLoginFailureCode.ProviderDisabledUser );
             guestActorTable.ActivateGuestActor( ctx, 1, createResult.GuestActorId, true );
             var r = guestActorTable.LoginGuestActor( ctx, info );
-            r.IsSuccess.Should().BeTrue();
+            r.IsSuccess.ShouldBeTrue();
             guestActorTable.ActivateGuestActor( ctx, 1, createResult.GuestActorId, false );
             loginResult = guestActorTable.LoginGuestActor( ctx, info );
-            loginResult.IsSuccess.Should().BeFalse();
-            loginResult.FailureCode.Should().Be( (int)KnownLoginFailureCode.ProviderDisabledUser );
+            loginResult.IsSuccess.ShouldBeFalse();
+            loginResult.FailureCode.ShouldBe( (int)KnownLoginFailureCode.ProviderDisabledUser );
         }
     }
 
@@ -94,7 +94,7 @@ public class GuestActorTests
             guestActorTable.RevokeGuestActor( ctx, 1, createResult.GuestActorId, destroyToken );
             var info = guestActorTable.CreateUserInfo<IGuestActorInfo>( i => i.Token = createResult.Token );
             var loginResult = guestActorTable.LoginGuestActor( ctx, info );
-            loginResult.IsSuccess.Should().BeFalse();
+            loginResult.IsSuccess.ShouldBeFalse();
         }
     }
 }

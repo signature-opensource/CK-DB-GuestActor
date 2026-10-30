@@ -6,9 +6,9 @@
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="CK.DB.Actor" Version="31.0.0-0.cris-auth.0.ci.27" />
-    <PackageReference Include="CK.DB.Auth" Version="31.0.0-0.cris-auth.0.ci.27" />
-    <PackageReference Include="CK.DB.TokenStore" Version="3.0.0-0.cris-auth.0.ci.6" />
+    <PackageReference Include="CK.DB.Actor" Version="31.0.0-0.cris-auth" />
+    <PackageReference Include="CK.DB.Auth" Version="31.0.0-0.cris-auth" />
+    <PackageReference Include="CK.DB.TokenStore" Version="3.0.0-0.cris-auth" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="**\*.sql;**\*.tql;**\*.y4" Exclude="bin\**;obj\**;CodeCakeBuilder\**;packages\**;@(EmbeddedResource)" />
